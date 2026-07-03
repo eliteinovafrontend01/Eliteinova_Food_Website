@@ -19,9 +19,9 @@ import breakfastImg from "../assets/hero-banner.jpg";
 import burgersImg from "../assets/hero-banner.jpg";
 
 // Import trending dish images
-import pizzaDish from "../assets/hero-banner.jpg";
-import cakeDish from "../assets/hero-banner.jpg";
-import biryaniDish from "../assets/hero-banner.jpg";
+import pizzaDish from "../assets/pizzaDish.jpg";
+import cakeDish from "../assets/cakeDish.jpg";
+import biryaniDish from "../assets/biryaniDish.jpg";
 import donutDish from "../assets/hero-banner.jpg";
 import lobsterDish from "../assets/hero-banner.jpg";
 import tiramisuDish from "../assets/hero-banner.jpg";
@@ -72,14 +72,14 @@ const CATEGORIES = [
 ];
 
 const RESTAURANTS = [
-  { name: "Aurum Kitchen", cuisine: "Modern Indian · Fine Dining", time: "25–35 min", rating: 4.9, img: aurumImg },
-  { name: "Petal & Fire", cuisine: "Wood-Fired · Italian", time: "20–30 min", rating: 4.8, img: petalImg },
-  { name: "The Blush Table", cuisine: "Patisserie · Desserts", time: "15–25 min", rating: 5.0, img: blushImg },
-  { name: "Saffron House", cuisine: "Mughlai · Biryani", time: "30–40 min", rating: 4.7, img: saffronImg },
-  { name: "Golden Spoon", cuisine: "Mediterranean · Greek", time: "25–35 min", rating: 4.6, img: goldenImg },
-  { name: "Fusion Lab", cuisine: "Asian Fusion · Sushi", time: "20–30 min", rating: 4.8, img: fusionImg },
-  { name: "Herb & Spice", cuisine: "Vegan · Plant-Based", time: "15–25 min", rating: 4.5, img: herbImg },
-  { name: "The Grill House", cuisine: "Steakhouse · BBQ", time: "35–45 min", rating: 4.9, img: grillImg },
+  { name: "Aurum Kitchen", cuisine: "Modern Indian · Fine Dining", time: "25–35 min", rating: 4.9, img: aurumImg, note: "Tasting menu changes weekly with the harvest." },
+  { name: "Petal & Fire", cuisine: "Wood-Fired · Italian", time: "20–30 min", rating: 4.8, img: petalImg, note: "Neapolitan dough, 48-hour cold ferment." },
+  { name: "The Blush Table", cuisine: "Patisserie · Desserts", time: "15–25 min", rating: 5.0, img: blushImg, note: "Everything plated fresh, nothing pre-boxed." },
+  { name: "Saffron House", cuisine: "Mughlai · Biryani", time: "30–40 min", rating: 4.7, img: saffronImg, note: "Dum-cooked in sealed clay for 6 hours." },
+  { name: "Golden Spoon", cuisine: "Mediterranean · Greek", time: "25–35 min", rating: 4.6, img: goldenImg, note: "Imported olive oil, house-made tzatziki." },
+  { name: "Fusion Lab", cuisine: "Asian Fusion · Sushi", time: "20–30 min", rating: 4.8, img: fusionImg, note: "Daily fish delivery, zero freezer storage." },
+  { name: "Herb & Spice", cuisine: "Vegan · Plant-Based", time: "15–25 min", rating: 4.5, img: herbImg, note: "Every dish designed by a nutritionist." },
+  { name: "The Grill House", cuisine: "Steakhouse · BBQ", time: "35–45 min", rating: 4.9, img: grillImg, note: "21-day dry-aged, char-grilled to order." },
 ];
 
 function Reveal({ as: Tag = "div", className = "", children, delay = 0 }) {
@@ -92,6 +92,20 @@ function Reveal({ as: Tag = "div", className = "", children, delay = 0 }) {
     >
       {children}
     </Tag>
+  );
+}
+
+function SectionHeading({ eyebrow, title, action }) {
+  return (
+    <Reveal className="flex flex-wrap items-end justify-between gap-4 mb-9">
+      <div>
+        <p className="eyebrow inline-flex items-center text-xs tracking-[0.3em] font-semibold text-gold-deep uppercase mb-3">
+          {eyebrow}
+        </p>
+        <h2 className="font-display text-3xl md:text-4xl text-plum">{title}</h2>
+      </div>
+      {action}
+    </Reveal>
   );
 }
 
@@ -108,7 +122,7 @@ function Hero() {
       <div className="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-rose/15 blur-3xl" />
       <div className="absolute top-40 right-0 w-96 h-96 rounded-full bg-gold/15 blur-3xl" />
 
-      <div className="relative max-w-7xl mx-auto px-5 md:px-8 grid md:grid-cols-2 gap-12 items-center pb-20 md:pb-28">
+      <div className="relative max-w-7xl mx-auto px-5 md:px-8 grid md:grid-cols-2 gap-12 items-center pb-16 md:pb-20">
         <Reveal>
           <p className="eyebrow text-xs tracking-[0.3em] font-semibold text-gold-deep uppercase mb-5">
             Eliteinova Platter
@@ -204,50 +218,62 @@ function Hero() {
   );
 }
 
+/* ---------------- Trending: tilted "menu ticket" cards, wax-seal rating, ribbon price tag ---------------- */
+
+function TrendingCard({ item, i }) {
+  const tilt = i % 2 === 0 ? "-rotate-2" : "rotate-2";
+  return (
+    <Reveal delay={i * 70}>
+      <div
+        className={`group relative ${tilt} hover:rotate-0 hover:-translate-y-2 transition-all duration-500`}
+      >
+        <div className="relative rounded-[26px] bg-white p-2 shadow-[0_16px_32px_-16px_rgba(43,20,32,0.25)] group-hover:shadow-rose transition-shadow duration-500">
+          <div className="relative h-56 rounded-[20px] overflow-hidden">
+            <img
+              src={item.img}
+              alt={item.name}
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-plum/75 via-plum/5 to-transparent" />
+
+            {/* wax-seal rating badge */}
+            <div className="absolute -top-3 -right-3 w-14 h-14 rounded-full bg-gradient-to-br from-gold-light to-gold flex flex-col items-center justify-center text-plum shadow-gold border-2 border-white rotate-6 group-hover:rotate-0 transition-transform duration-500">
+              <span className="text-xs font-bold leading-none">{item.rating}</span>
+              <span className="text-[8px] tracking-wide">RATED</span>
+            </div>
+
+            <h3 className="absolute bottom-3 left-3 right-3 font-display text-white text-base leading-tight">
+              {item.name}
+            </h3>
+          </div>
+
+          {/* ribbon price tag, flag-notched */}
+          <div className="absolute -bottom-3 left-4 bg-rose text-white text-sm font-bold pl-4 pr-3 py-1.5 rounded-r-full rounded-tl-full shadow-md">
+            {item.price}
+          </div>
+        </div>
+      </div>
+    </Reveal>
+  );
+}
+
 function Trending() {
   return (
-    <section id="menu" className="bg-ivory py-20 md:py-28">
+    <section id="menu" className="bg-ivory pt-14 pb-16 md:pt-16 md:pb-20">
       <div className="max-w-7xl mx-auto px-5 md:px-8">
-        <Reveal className="flex flex-wrap items-end justify-between gap-4 mb-14">
-          <div>
-            <p className="eyebrow inline-flex items-center text-xs tracking-[0.3em] font-semibold text-gold-deep uppercase mb-4">
-              This Week
-            </p>
-            <h2 className="font-display text-3xl md:text-4xl text-plum">Trending on the Table</h2>
-          </div>
-          <a href="#menu" className="text-sm font-semibold text-rose hover:underline">
-            Full menu →
-          </a>
-        </Reveal>
+        <SectionHeading
+          eyebrow="This Week"
+          title="Trending on the Table"
+          action={
+            <a href="#menu" className="text-sm font-semibold text-rose hover:underline">
+              Full menu →
+            </a>
+          }
+        />
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {TRENDING.map((item, i) => (
-            <Reveal key={item.name} delay={i * 80}>
-              <div className="group relative rounded-3xl overflow-hidden bg-white border border-blush-200 hover:-translate-y-2 hover:shadow-[0_20px_40px_-12px_rgba(236,72,153,0.25)] transition-all duration-500">
-                <div className="relative h-48 overflow-hidden">
-                  <img 
-                    src={item.img} 
-                    alt={item.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-plum/60 via-plum/10 to-transparent" />
-                  <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-semibold text-rose shadow-sm">
-                    ★ {item.rating}
-                  </div>
-                </div>
-                <div className="p-4">
-                  <h3 className="font-display text-sm text-plum leading-tight mb-1 line-clamp-2">
-                    {item.name}
-                  </h3>
-                  <div className="flex items-center justify-between mt-2">
-                    <span className="text-rose font-bold text-lg">{item.price}</span>
-                    <button className="text-xs text-plum/40 hover:text-rose transition-colors">
-                      Add +
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
+            <TrendingCard key={item.name} item={item} i={i} />
           ))}
         </div>
       </div>
@@ -255,97 +281,129 @@ function Trending() {
   );
 }
 
-function Categories() {
+/* ---------------- Categories: pinned polaroid cards ---------------- */
+
+const TILTS = ["-rotate-3", "rotate-2", "-rotate-1", "rotate-3", "-rotate-2"];
+
+function CategoryCard({ cat, i }) {
+  const tilt = TILTS[i % TILTS.length];
   return (
-    <section id="categories" className="relative bg-blush py-20 md:py-28">
+    <Reveal delay={i * 55}>
+      <a
+        href="#menu"
+        className={`group relative block bg-white p-2.5 pb-4 shadow-[0_10px_24px_-10px_rgba(43,20,32,0.3)] ${tilt} hover:rotate-0 hover:-translate-y-2 hover:shadow-rose transition-all duration-500`}
+      >
+        <span className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-gold shadow-gold border-2 border-white z-10" />
+        <div className="relative w-full aspect-square overflow-hidden">
+          <img
+            src={cat.img}
+            alt={cat.name}
+            className="w-full h-full object-cover grayscale-[10%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+          />
+        </div>
+        <p className="mt-3 font-display italic text-sm text-plum/80 text-center group-hover:text-rose transition-colors">
+          {cat.name}
+        </p>
+      </a>
+    </Reveal>
+  );
+}
+
+function Categories() {
+  // Split categories into two rows of 5
+  const firstRow = CATEGORIES.slice(0, 5);
+  const secondRow = CATEGORIES.slice(5, 10);
+
+  return (
+    <section id="categories" className="relative bg-blush pt-14 pb-16 md:pt-16 md:pb-20">
       <PetalDivider fill="#FFFDFB" className="absolute -top-[1px] left-0 rotate-180" />
       <div className="max-w-7xl mx-auto px-5 md:px-8">
-        <Reveal className="text-center max-w-xl mx-auto mb-14">
-          <p className="eyebrow justify-center inline-flex items-center text-xs tracking-[0.3em] font-semibold text-gold-deep uppercase mb-4">
-            Browse
-          </p>
-          <h2 className="font-display text-3xl md:text-4xl text-plum">Categories</h2>
-        </Reveal>
+        <SectionHeading eyebrow="Browse" title="Categories" />
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
-          {CATEGORIES.map((cat, i) => (
-            <Reveal key={cat.name} delay={i * 60}>
-              <a
-                href="#menu"
-                className="group flex flex-col items-center text-center p-4 bg-white/70 hover:bg-white transition-colors duration-300 rounded-2xl"
-              >
-                <div className="w-24 h-24 rounded-full overflow-hidden mb-3 ring-4 ring-white shadow-md group-hover:scale-110 group-hover:shadow-[0_0_30px_rgba(236,72,153,0.2)] transition-all duration-300">
-                  <img 
-                    src={cat.img} 
-                    alt={cat.name} 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <span className="text-sm font-semibold text-plum/80 group-hover:text-rose transition-colors">
-                  {cat.name}
-                </span>
-              </a>
-            </Reveal>
+        {/* Row 1 */}
+        <div className="grid grid-cols-5 gap-6 mb-8">
+          {firstRow.map((cat, i) => (
+            <CategoryCard key={cat.name} cat={cat} i={i} />
+          ))}
+        </div>
+
+        {/* Row 2 */}
+        <div className="grid grid-cols-5 gap-6">
+          {secondRow.map((cat, i) => (
+            <CategoryCard key={cat.name} cat={cat} i={i + 5} />
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+/* ---------------- Restaurants: 3D flip cards ---------------- */
+
+function RestaurantCard({ r, i }) {
+  return (
+    <Reveal delay={i * 70}>
+      <div className="group [perspective:1400px] h-[340px]">
+        <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+          {/* Front */}
+          <div className="absolute inset-0 [backface-visibility:hidden] rounded-3xl overflow-hidden">
+            <img src={r.img} alt={r.name} className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-plum/85 via-plum/20 to-transparent" />
+            <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-semibold text-rose shadow-sm">
+              ★ {r.rating.toFixed(1)}
+            </div>
+            <div className="absolute bottom-4 left-4 right-4">
+              <h3 className="font-display text-lg text-white leading-tight">{r.name}</h3>
+              <p className="text-xs text-white/70 mt-1">{r.cuisine}</p>
+            </div>
+          </div>
+
+          {/* Back */}
+          <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-3xl bg-gradient-to-br from-rose-deep to-plum p-6 flex flex-col justify-between text-white">
+            <div>
+              <p className="eyebrow text-[10px] tracking-[0.25em] font-semibold text-gold-light uppercase mb-3">
+                {r.cuisine}
+              </p>
+              <p className="text-sm text-white/80 leading-relaxed">{r.note}</p>
+            </div>
+            <div>
+              <div className="flex items-center justify-between text-sm mb-4">
+                <span className="text-gold-light font-semibold">★ {r.rating.toFixed(1)}</span>
+                <span className="text-white/70">{r.time}</span>
+              </div>
+              <a
+                href="#order"
+                className="block text-center relative overflow-hidden rounded-full py-2.5 text-sm font-semibold text-plum shadow-gold"
+              >
+                <span className="absolute inset-0 shimmer-gold" />
+                <span className="relative">Reserve Table</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Reveal>
   );
 }
 
 function Restaurants() {
   return (
-    <section id="restaurants" className="bg-ivory py-20 md:py-28">
+    <section id="restaurants" className="bg-ivory pt-14 pb-16 md:pt-16 md:pb-20">
       <div className="max-w-7xl mx-auto px-5 md:px-8">
-        <Reveal className="flex flex-wrap items-end justify-between gap-4 mb-14">
-          <div>
-            <p className="eyebrow inline-flex items-center text-xs tracking-[0.3em] font-semibold text-gold-deep uppercase mb-4">
-              Featured
-            </p>
-            <h2 className="font-display text-3xl md:text-4xl text-plum">Restaurants We Vouch For</h2>
-          </div>
-          <a href="#restaurants" className="text-sm font-semibold text-rose hover:underline">
-            View all →
-          </a>
-        </Reveal>
+        <SectionHeading
+          eyebrow="Featured"
+          title="Restaurants We Vouch For"
+          action={
+            <a href="#restaurants" className="text-sm font-semibold text-rose hover:underline">
+              View all →
+            </a>
+          }
+        />
+        <p className="text-xs text-plum/40 mb-6 -mt-5">Hover a card to see why we picked it.</p>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {RESTAURANTS.map((r, i) => (
-            <Reveal key={r.name} delay={i * 80}>
-              <div className="group rounded-3xl overflow-hidden bg-white border border-blush-200 hover:shadow-[0_20px_40px_-12px_rgba(236,72,153,0.2)] transition-all duration-500 hover:-translate-y-1">
-                <div className="relative h-48 overflow-hidden bg-gradient-to-br from-rose/10 via-blush-200 to-gold/10">
-                  <img 
-                    src={r.img} 
-                    alt={r.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-plum/40 via-transparent to-transparent" />
-                  <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-semibold text-rose shadow-sm">
-                    ★ {r.rating.toFixed(1)}
-                  </div>
-                  <div className="absolute bottom-3 right-3 bg-plum/80 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-medium text-white">
-                    {r.time}
-                  </div>
-                </div>
-                <div className="p-5">
-                  <h3 className="font-display text-lg text-plum group-hover:text-rose transition-colors">
-                    {r.name}
-                  </h3>
-                  <p className="text-xs text-plum/50 mt-1">{r.cuisine}</p>
-                  <div className="mt-3 flex items-center gap-2">
-                    <div className="flex-1 h-1 rounded-full bg-blush-200 overflow-hidden">
-                      <div 
-                        className="h-full rounded-full bg-gradient-to-r from-rose to-gold"
-                        style={{ width: `${(r.rating / 5) * 100}%` }}
-                      />
-                    </div>
-                    <span className="text-xs font-semibold text-plum/60">
-                      {r.rating.toFixed(1)}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
+            <RestaurantCard key={r.name} r={r} i={i} />
           ))}
         </div>
       </div>
