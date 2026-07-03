@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-rose: #E23F73;
+  --color-rose-deep: #B92F5C;
+  --color-rose-soft: #FF7CA3;
+
+  --color-blush: #FFF3F6;
+  --color-blush-200: #FFE3EC;
+  --color-blush-300: #FFD3E1;
+
+  --color-gold: #C9A24B;
+  --color-gold-light: #E8CD8A;
+  --color-gold-deep: #9C7A2E;
+
+  --color-plum: #2B1420;
+  --color-plum-light: #4A2436;
+  --color-ivory: #FFFDFB;
+
+  --font-display: "Fraunces", serif;
+  --font-body: "Manrope", sans-serif;
+
+  --radius-4xl: 2rem;
+
+  --shadow-rose: 0 20px 40px -12px rgba(226, 63, 115, 0.35);
+  --shadow-gold: 0 10px 30px -8px rgba(201, 162, 75, 0.45);
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: floatSlow 8s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.5s linear infinite;
+  --animate-marquee: marquee 22s linear infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-14px); }
+  }
+  @keyframes floatSlow {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(3deg); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-33.333%); }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-ivory text-plum font-body antialiased;
+}
+
+h1, h2, h3, h4, .font-display {
+  @apply font-display;
+}
+
+/* Gold shimmer sweep used on primary CTAs */
+.shimmer-gold {
+  background: linear-gradient(
+    100deg,
+    #c9a24b 0%,
+    #e8cd8a 30%,
+    #c9a24b 50%,
+    #e8cd8a 70%,
+    #c9a24b 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Reveal-on-scroll base state, toggled by the useReveal hook */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Thin gold hairline used as a section eyebrow accent */
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: #c9a24b;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+::selection {
+  background: #ffd3e1;
+  color: #2b1420;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #fff3f6;
+}
+::-webkit-scrollbar-thumb {
+  background: #f3b8cb;
+  border-radius: 999px;
+}
