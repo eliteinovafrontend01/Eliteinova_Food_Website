@@ -1,55 +1,56 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const NAV_LINKS = [
-  { label: "Home", href: "#home" },
+  { label: "Home", href: "/" },
   {
     label: "Menu",
-    href: "#menu",
+    href: "/#menu",
     submenu: [
-      { label: "Cakes & Pastries", href: "#menu-cakes" },
-      { label: "Cupcakes", href: "#menu-cupcakes" },
-      { label: "Donuts & Desserts", href: "#menu-donuts" },
-      { label: "Gourmet Beverages", href: "#menu-beverages" },
-      { label: "Chef's Combos", href: "#menu-combos" },
+      { label: "Cakes & Pastries", href: "/#menu-cakes" },
+      { label: "Cupcakes", href: "/#menu-cupcakes" },
+      { label: "Donuts & Desserts", href: "/#menu-donuts" },
+      { label: "Gourmet Beverages", href: "/#menu-beverages" },
+      { label: "Chef's Combos", href: "/#menu-combos" },
     ],
   },
   {
     label: "Categories",
-    href: "#categories",
+    href: "/categories",
     submenu: [
-      { label: "Biryani & Rice", href: "#cat-biryani" },
-      { label: "Wood-Fired Pizza", href: "#cat-pizza" },
-      { label: "Artisan Desserts", href: "#cat-desserts" },
-      { label: "Healthy Bowls", href: "#cat-healthy" },
-      { label: "Craft Drinks", href: "#cat-drinks" },
+      { label: "Biryani & Rice", href: "/categories#cat-biryani-rice" },
+      { label: "Wood-Fired Pizza", href: "/categories#cat-wood-fired-pizza" },
+      { label: "Artisan Desserts", href: "/categories#cat-artisan-desserts" },
+      { label: "Healthy Bowls", href: "/categories#cat-healthy-bowls" },
+      { label: "Craft Drinks", href: "/categories#cat-craft-drinks" },
     ],
   },
   {
     label: "Restaurants",
-    href: "#restaurants",
+    href: "/#restaurants",
     submenu: [
-      { label: "Top Rated", href: "#rest-top" },
-      { label: "Newly Added", href: "#rest-new" },
-      { label: "Near You", href: "#rest-near" },
-      { label: "Fine Dining", href: "#rest-fine" },
+      { label: "Top Rated", href: "/#rest-top" },
+      { label: "Newly Added", href: "/#rest-new" },
+      { label: "Near You", href: "/#rest-near" },
+      { label: "Fine Dining", href: "/#rest-fine" },
     ],
   },
   {
     label: "Home Foods",
-    href: "#home-foods",
+    href: "/#home-foods",
     submenu: [
-      { label: "Home Chefs", href: "#hf-chefs" },
-      { label: "Meal Subscriptions", href: "#hf-subscriptions" },
-      { label: "Tiffin Service", href: "#hf-tiffin" },
-      { label: "Family Feasts", href: "#hf-family" },
+      { label: "Home Chefs", href: "/#hf-chefs" },
+      { label: "Meal Subscriptions", href: "/#hf-subscriptions" },
+      { label: "Tiffin Service", href: "/#hf-tiffin" },
+      { label: "Family Feasts", href: "/#hf-family" },
     ],
   },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 function Logo() {
   return (
-    <a href="#home" className="flex items-center gap-3 shrink-0 group">
+    <Link to="/" className="flex items-center gap-3 shrink-0 group">
       <span className="relative flex items-center justify-center w-11 h-11 rounded-full bg-gradient-to-br from-rose/20 to-gold/20 border border-gold/40 group-hover:border-gold transition-all duration-300">
         <span className="absolute inset-0 rounded-full bg-gradient-to-br from-rose/10 to-gold/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         <span className="font-display text-lg text-gold-deep tracking-wide group-hover:scale-110 transition-transform duration-300">EP</span>
@@ -62,7 +63,7 @@ function Logo() {
           PLATTER
         </span>
       </span>
-    </a>
+    </Link>
   );
 }
 
@@ -75,8 +76,8 @@ function DesktopNavItem({ item, isOpen, onOpen, onClose }) {
       onMouseEnter={() => hasSubmenu && onOpen(item.label)}
       onMouseLeave={() => hasSubmenu && onClose()}
     >
-      <a
-        href={item.href}
+      <Link
+        to={item.href}
         className={`flex items-center gap-1 py-2 text-sm font-medium transition-all duration-300 relative group ${
           isOpen ? "text-rose" : "text-plum/70 hover:text-rose"
         }`}
@@ -103,7 +104,7 @@ function DesktopNavItem({ item, isOpen, onOpen, onClose }) {
             />
           </svg>
         )}
-      </a>
+      </Link>
 
       {hasSubmenu && (
         <div
@@ -116,9 +117,9 @@ function DesktopNavItem({ item, isOpen, onOpen, onClose }) {
           <div className="min-w-[240px] rounded-2xl border border-gold/10 bg-white/98 backdrop-blur-xl shadow-[0_20px_60px_-15px_rgba(43,20,32,0.2)] py-2 overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-rose/5 to-gold/5 opacity-50" />
             {item.submenu.map((sub, index) => (
-              <a
+              <Link
                 key={sub.label}
-                href={sub.href}
+                to={sub.href}
                 className="relative block px-6 py-2.5 text-sm text-plum/70 hover:text-rose hover:bg-rose/5 transition-all duration-200"
                 style={{
                   animationDelay: isOpen ? `${index * 30}ms` : "0ms",
@@ -128,7 +129,7 @@ function DesktopNavItem({ item, isOpen, onOpen, onClose }) {
                   <span className="w-1 h-1 rounded-full bg-rose/30 group-hover:bg-rose transition-colors" />
                   {sub.label}
                 </span>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -213,8 +214,8 @@ export default function Header() {
               </span>
             </ActionButton>
 
-            <a
-              href="#order"
+            <Link
+              to="/#order"
               className="relative overflow-hidden ml-2 px-6 py-2.5 rounded-full text-sm font-semibold text-plum bg-gradient-to-r from-gold/20 via-gold/10 to-gold/20 shadow-gold hover:shadow-gold/50 transition-all duration-300 hover:-translate-y-0.5"
             >
               <span className="absolute inset-0 shimmer-gold" />
@@ -224,7 +225,7 @@ export default function Header() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </span>
-            </a>
+            </Link>
           </div>
 
           {/* Mobile toggle */}
@@ -259,7 +260,9 @@ export default function Header() {
                     : setMobileOpen(false)
                 }
               >
-                <span className="text-sm">{item.label}</span>
+                <Link to={item.href} className="text-sm" onClick={() => setMobileOpen(false)}>
+                  {item.label}
+                </Link>
                 {item.submenu && (
                   <svg
                     className={`w-4 h-4 transition-all duration-300 ${
@@ -281,14 +284,14 @@ export default function Header() {
                 >
                   <div className="overflow-hidden flex flex-col pl-4 gap-0.5">
                     {item.submenu.map((sub) => (
-                      <a
+                      <Link
                         key={sub.label}
-                        href={sub.href}
+                        to={sub.href}
                         className="py-2.5 text-sm text-plum/60 hover:text-rose transition-colors duration-200"
                         onClick={() => setMobileOpen(false)}
                       >
                         {sub.label}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -296,13 +299,13 @@ export default function Header() {
             </div>
           ))}
           
-          <a
-            href="#order"
+          <Link
+            to="/#order"
             className="mt-6 text-center px-5 py-3.5 rounded-full text-sm font-semibold text-plum bg-gradient-to-r from-gold/20 via-gold/10 to-gold/20 shadow-gold"
             onClick={() => setMobileOpen(false)}
           >
             Reserve Now
-          </a>
+          </Link>
         </div>
       </div>
     </header>

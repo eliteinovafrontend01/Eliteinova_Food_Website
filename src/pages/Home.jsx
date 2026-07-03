@@ -7,36 +7,36 @@ import PetalDivider from "../components/PetalDivider";
 import heroBanner from "../assets/hero-banner.jpg";
 
 // Import your category images here — swap each path for its own photo
-import biryaniImg from "../assets/hero-banner.jpg";
-import pizzaImg from "../assets/hero-banner.jpg";
-import dessertsImg from "../assets/hero-banner.jpg";
-import healthyImg from "../assets/hero-banner.jpg";
-import drinksImg from "../assets/hero-banner.jpg";
-import combosImg from "../assets/hero-banner.jpg";
-import pastaImg from "../assets/hero-banner.jpg";
-import seafoodImg from "../assets/hero-banner.jpg";
-import breakfastImg from "../assets/hero-banner.jpg";
-import burgersImg from "../assets/hero-banner.jpg";
+import biryaniImg from "../assets/BiryaniRice.jpg";
+import pizzaImg from "../assets/pizzaImg.jpg";
+import dessertsImg from "../assets/dessertsImg.jpg";
+import healthyImg from "../assets/healthyImg.jpg";
+import drinksImg from "../assets/drinksImg.jpg";
+import combosImg from "../assets/combosImg.jpg";
+import pastaImg from "../assets/pastaImg.jpg";
+import seafoodImg from "../assets/seafoodImg.jpg";
+import breakfastImg from "../assets/breakfastImg.jpg";
+import burgersImg from "../assets/burgersImg.jpg";
 
 // Import trending dish images
 import pizzaDish from "../assets/pizzaDish.jpg";
 import cakeDish from "../assets/cakeDish.jpg";
 import biryaniDish from "../assets/biryaniDish.jpg";
-import donutDish from "../assets/hero-banner.jpg";
-import lobsterDish from "../assets/hero-banner.jpg";
-import tiramisuDish from "../assets/hero-banner.jpg";
-import chickenDish from "../assets/hero-banner.jpg";
-import risottoDish from "../assets/hero-banner.jpg";
+import donutDish from "../assets/donutDish.jpg";
+import lobsterDish from "../assets/lobsterDish.jpg";
+import tiramisuDish from "../assets/tiramisuDish.jpg";
+import chickenDish from "../assets/chickenDish.jpg";
+import risottoDish from "../assets/risottoDish.jpg";
 
 // Import restaurant images
-import aurumImg from "../assets/hero-banner.jpg";
-import petalImg from "../assets/hero-banner.jpg";
-import blushImg from "../assets/hero-banner.jpg";
-import saffronImg from "../assets/hero-banner.jpg";
-import goldenImg from "../assets/hero-banner.jpg";
-import fusionImg from "../assets/hero-banner.jpg";
-import herbImg from "../assets/hero-banner.jpg";
-import grillImg from "../assets/hero-banner.jpg";
+import aurumImg from "../assets/aurumImg.jpg";
+import petalImg from "../assets/petalImg.jpg";
+import blushImg from "../assets/blushImg.jpg";
+import saffronImg from "../assets/saffronImg.jpg";
+import goldenImg from "../assets/goldenImg.jpg";
+import fusionImg from "../assets/fusionImg.jpg";
+import herbImg from "../assets/herbImg.jpg";
+import grillImg from "../assets/grillImg.jpg";
 
 const MARQUEE_WORDS = [
   "Farm to Fork",
